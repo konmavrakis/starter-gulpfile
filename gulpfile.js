@@ -33,10 +33,20 @@ gulp.task('styles', () => {
     .pipe(gulp.dest('dist/styles'));
 });
 
+//Lint JS files
 gulp.task('jslint', () => {
   return gulp.src('assets/js/*.js')
     .pipe(jshint({ linter: require('jshint').JSXHINT }))
    .pipe(jshint.reporter('default'));
+});
+
+//Compress Images
+gulp.task('images', function() {
+  return gulp.src('assets/images/**/*.+(png|jpg|jpeg|gif|svg)')
+    .pipe(imagemin({
+      interlaced: true
+    }))
+    .pipe(gulp.dest('dist/images'));
 });
 
 //Livereload with BrowserSync
