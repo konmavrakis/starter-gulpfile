@@ -1,6 +1,6 @@
 # starter-gulpfile
 
-Gulp starter template with JSlint,JS/CSS minify and Live Reload for PHP
+Gulp starter template with JSlint,JS/CSS minify, image compression and LiveReload
 
 ## How to install
 
