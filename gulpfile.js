@@ -41,7 +41,7 @@ gulp.task('jslint', () => {
 });
 
 //Compress Images
-gulp.task('images', function() {
+gulp.task('images', () => {
   return gulp.src('assets/images/**/*.+(png|jpg|jpeg|gif|svg)')
     .pipe(imagemin({
       interlaced: true
