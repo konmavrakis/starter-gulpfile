@@ -1,0 +1,51 @@
+let gulp = require('gulp'),
+    //Gulp packages
+    concat = require('gulp-concat'),
+    rename = require('gulp-rename'),
+    uglify = require('gulp-uglify'),
+    util = require('gulp-util'),
+    cleanCSS = require('gulp-clean-css');
+    connect = require('gulp-connect-php'),
+    browserSync = require('browser-sync'),
+    jshint = require('gulp-jshint');
+    
+    //Directories - modify to fit your app structure
+    jsFiles = 'assets/js/*.js',
+    jsDest = 'dist/scripts',
+    stylesFiles = 'assets/css/*.css',
+    stylesDest  = 'dist/styles';
+
+//Concat - Minify - Uglify JS
+gulp.task('scripts', () => {
+  return gulp.src(jsFiles)
+    .pipe(concat('scripts.js'))
+    .pipe(gulp.dest(jsDest))
+    .pipe(rename('scripts.min.js'))
+    .pipe(uglify().on('error', util.log))
+    .pipe(gulp.dest(jsDest));
+});
+
+//Minify Styles
+gulp.task('styles', () => {
+  return gulp.src(stylesFiles)
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(gulp.dest('dist/styles'));
+});
+
+gulp.task('jslint', () => {
+  return gulp.src('assets/js/*.js')
+    .pipe(jshint({ linter: require('jshint').JSXHINT }))
+   .pipe(jshint.reporter('default'));
+});
+
+//Livereload with BrowserSync
+gulp.task('livereload', () => {
+  connect.server({}, function (){
+    browserSync({
+      proxy: 'localhost:3000/PROJECT'
+    });
+  });
+  gulp.watch('**/*.*').on('change', function () {
+    browserSync.reload();
+  });
+});
