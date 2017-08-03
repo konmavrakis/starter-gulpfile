@@ -13,8 +13,9 @@ let gulp = require('gulp'),
     jsFiles = 'assets/js/*.js',
     jsDest = 'dist/scripts',
     stylesFiles = 'assets/css/*.css',
-    stylesDest  = 'dist/styles';
-
+    stylesDest  = 'dist/styles',
+    appURL = 'localhost:3000';
+    
 //Concat - Minify - Uglify JS
 gulp.task('scripts', () => {
   return gulp.src(jsFiles)
@@ -42,7 +43,7 @@ gulp.task('jslint', () => {
 gulp.task('livereload', () => {
   connect.server({}, function (){
     browserSync({
-      proxy: 'localhost:3000/PROJECT'
+      proxy: appURL
     });
   });
   gulp.watch('**/*.*').on('change', function () {
