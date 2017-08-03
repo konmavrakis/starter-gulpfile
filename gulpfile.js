@@ -51,12 +51,12 @@ gulp.task('images', () => {
 
 //Livereload with BrowserSync
 gulp.task('livereload', () => {
-  connect.server({}, function (){
+  connect.server({}, () => {
     browserSync({
       proxy: appURL
     });
   });
-  gulp.watch('**/*.*').on('change', function () {
+  gulp.watch('**/*.*').on('change', () =>  {
     browserSync.reload();
   });
 });
