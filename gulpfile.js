@@ -8,14 +8,14 @@ let gulp = require('gulp'),
     connect = require('gulp-connect-php'),
     browserSync = require('browser-sync'),
     jshint = require('gulp-jshint');
-    
+
     //Directories - modify to fit your app structure
     jsFiles = 'assets/js/*.js',
     jsDest = 'dist/scripts',
     stylesFiles = 'assets/css/*.css',
     stylesDest  = 'dist/styles',
     appURL = 'localhost:3000';
-    
+
 //Concat - Minify - Uglify JS
 gulp.task('scripts', () => {
   return gulp.src(jsFiles)
@@ -60,3 +60,6 @@ gulp.task('livereload', () => {
     browserSync.reload();
   });
 });
+
+//The default gulp task when running gulp in the cli
+gulp.task('default', ['jslint', 'livereload']);
