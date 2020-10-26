@@ -18,7 +18,3 @@ Gulp starter template with JSlint,JS/CSS minify, image compression and LiveReloa
   * run ``gulp jslint`` to Lint your JS files
   * run ``gulp livereload`` to start browserSync server
   * run ``gulp images`` to compress images
-
----
-
-More to be added soonish
